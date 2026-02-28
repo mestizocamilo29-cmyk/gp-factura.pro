@@ -1,0 +1,18 @@
+# Options -MultiViews
+# (Comentado porque causa Error 500 en algunos hostings compartidos)
+RewriteEngine On
+# RewriteBase /
+
+# 1. Redirect Trailing Slashes (Make URL cleaner)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# 2. Enforce HTTPS (Optional - Descomentar si tienes SSL activo)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 3. Handle Front Controller
+# Route everything that isn't a file or directory to index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]
